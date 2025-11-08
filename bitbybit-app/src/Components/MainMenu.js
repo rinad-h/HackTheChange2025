@@ -1,12 +1,12 @@
 import React from "react";
 
-const MainMenu = ({ onLogout }) => {
+const MainMenu = ({ onLogout, onNavigate }) => {
   const navItems = [
-    "Transportation",
-    "Crime",
-    "Small Businesses",
-    "Accessibility",
-    "Community Events",
+    { label: "Transportation", route: "transport" },
+    { label: "Crime", route: "crime" },
+    { label: "Small Businesses", route: "business" },
+    { label: "Accessibility", route: "access" },
+    { label: "Community Events", route: "events" },
   ];
 
   return (
@@ -15,11 +15,11 @@ const MainMenu = ({ onLogout }) => {
         <div style={styles.leftGroup}>
           {navItems.map((item) => (
             <button
-              key={item}
+              key={item.route}
               style={styles.navItemButton}
-              onClick={() => console.log(`${item} clicked`)}
+              onClick={() => (onNavigate ? onNavigate(item.route) : console.log(`${item.label} clicked`))}
             >
-              {item}
+              {item.label}
             </button>
           ))}
         </div>
