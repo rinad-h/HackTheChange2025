@@ -7,14 +7,11 @@ import Crime from "./Components/Crime";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [route, setRoute] = useState(null); // 'main', 'crime', etc.
+  const [route, setRoute] = useState(null); 
   const path = window.location.pathname;
 
-  if (loggedIn) {
-    return <MainMenu onLogout={() => setLoggedIn(false)} />;
-  }
-   if (path === "/map") {
-    return <LeafletMap />;
+  if (!loggedIn && path === "/map") {
+    return <Map />;
   }
 
   if (!loggedIn && path === "/signup") {
@@ -32,12 +29,10 @@ function App() {
     );
   }
 
-  // loggedIn views
   if (route === "crime") {
     return <Crime onBack={() => setRoute("main")} onLogout={() => { setLoggedIn(false); setRoute(null); }} />;
   }
 
-  // default to MainMenu
   return <MainMenu onLogout={() => { setLoggedIn(false); setRoute(null); }} onNavigate={(r) => setRoute(r)} />;
 }
 
