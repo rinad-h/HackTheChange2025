@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Login = ({ toggleForm }) => {
+const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -17,7 +17,9 @@ const Login = ({ toggleForm }) => {
 
       const data = await res.text();
       setMessage(data);
-
+      if (data === "Login successful" && onLoginSuccess) {
+        onLoginSuccess();
+      }
     } catch (err) {
       console.error(err);
       setMessage("Server error. Please try again later.");
@@ -46,22 +48,20 @@ const Login = ({ toggleForm }) => {
         />
         <button type="submit" style={styles.button}>Login</button>
 
-       
-       <a
-  href="/signup"
-  style={{
-    ...styles.button,
-    backgroundColor: "#2196F3",
-    marginTop: "0.5rem",
-    textAlign: "center",
-    display: "block",
-    textDecoration: "none",
-    lineHeight: "2rem",
-  }}
->
-  Go to Signup
-</a>
-
+        <a
+          href="/signup"
+          style={{
+            ...styles.button,
+            backgroundColor: "#2196F3",
+            marginTop: "0.5rem",
+            textAlign: "center",
+            display: "block",
+            textDecoration: "none",
+            lineHeight: "2rem",
+          }}
+        >
+          Go to Signup
+        </a>
 
         {message && <p>{message}</p>}
       </form>
