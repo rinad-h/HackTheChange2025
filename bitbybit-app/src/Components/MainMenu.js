@@ -28,7 +28,7 @@ const styles = {
     fontFamily: "Arial, sans-serif",
   },
   content: {
-    paddingTop: "80px",
+    paddingTop: "80px", // leave space for fixed navbar
     paddingLeft: "1rem",
     paddingRight: "1rem",
   },
