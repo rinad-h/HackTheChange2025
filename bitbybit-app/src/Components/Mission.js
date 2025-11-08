@@ -10,7 +10,6 @@ const Mission = () => {
           <img src={logo} alt="Logo" style={styles.logo} />
         </div>
 
-        {/* Right: Mission Text */}
         <div style={styles.textSection}>
           <h2 style={styles.heading}>Our Mission</h2>
           <p style={styles.paragraph}>

@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Mission from "./Mission";
-
+import CommunityCards from "./CommunityCards";
 
 const MainMenu = ({ onLogout, onNavigate }) => {
   const navItems = [
@@ -16,6 +16,7 @@ const MainMenu = ({ onLogout, onNavigate }) => {
     <div style={styles.container}>
       <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
       <Mission />
+      <CommunityCards />
     </div>
   );
 };
@@ -25,10 +26,6 @@ const styles = {
     minHeight: "100vh",
     backgroundColor: "#f0f2f5",
     fontFamily: "Arial, sans-serif",
-  },
-  content: {
-    paddingLeft: "1rem",
-    paddingRight: "1rem",
   },
 };
 
