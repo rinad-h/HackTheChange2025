@@ -12,7 +12,7 @@ function App() {
     return <MainMenu onLogout={() => setLoggedIn(false)} />;
   }
    if (path === "/map") {
-    return <LeafletMap />;
+    return <Map />;
   }
 
   if (path === "/signup") {
