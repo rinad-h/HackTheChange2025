@@ -21,6 +21,30 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
   password TEXT
 )`);
 
+/**DB table for the posts for the forum page */
+
+db.run(`CREATE TABLE IF NOT EXISTS posts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  location TEXT,
+  category TEXT NOT NULL,
+  desc TEXT NOT NULL,
+  authro TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMPS
+
+  )`);
+
+  /**DB table for the comments under posts for the forum page */
+
+  db.run(`CREATE TABLE IF NOT EXISTS comments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER NOT NULL,
+  body TEXT NOT NULL,
+  author TEXT,          
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+)`);
+
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).send("Missing fields");
@@ -47,6 +71,13 @@ app.post("/login", (req, res) => {
     res.send("Login successful");
   });
 });
+
+//--------- Forum API -----------------:
+
+app.post("/posts", (req, res) => {
+  
+}
+)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
