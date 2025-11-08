@@ -10,9 +10,11 @@ function App() {
   const [route, setRoute] = useState(null); // 'main', 'crime', etc.
   const path = window.location.pathname;
 
-  // Map standalone route (keeps existing behavior)
-  if (!loggedIn && path === "/map") {
-    return <Map />;
+  if (loggedIn) {
+    return <MainMenu onLogout={() => setLoggedIn(false)} />;
+  }
+   if (path === "/map") {
+    return <LeafletMap />;
   }
 
   if (!loggedIn && path === "/signup") {
