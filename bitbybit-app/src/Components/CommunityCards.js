@@ -1,9 +1,17 @@
 import React from "react";
+import transpo from "../images/transpo.png";
+import crime from "../images/crime.png";
+import sb from "../images/sb.png";
+import community from "../images/community.png";
+
+
 
 const InfoCard = ({ icon, title, description }) => {
   return (
     <div style={styles.card}>
-      <div style={styles.icon}>{icon}</div>
+      <div style={styles.icon}>
+        {typeof icon === "string" ? icon : icon}
+      </div>
       <h3 style={styles.title}>{title}</h3>
       <p style={styles.description}>{description}</p>
     </div>
@@ -13,22 +21,22 @@ const InfoCard = ({ icon, title, description }) => {
 const CommunityCards = () => {
   const cardsData = [
     {
-      icon: "🚗",
+      icon: <img src={transpo} alt="Transportation" style={styles.logo} />,
       title: "Transportation",
       description: "Share updates or report issues on local routes.",
     },
     {
-      icon: "🚓",
+      icon: <img src={crime} alt="Crime & Safety" style={{ width: "90px", height: "90px" }} />,
       title: "Crime & Safety",
       description: "Keep your neighborhood informed and vigilant.",
     },
     {
-      icon: "🏪",
+      icon: <img src={sb} alt="Small Businesses" style={styles.logo} />,
       title: "Small Businesses",
       description: "Promote and support local entrepreneurs.",
     },
     {
-      icon: "🎉",
+      icon: <img src={community} alt="Community Events" style={styles.logo} />,
       title: "Community Events",
       description: "Discover and share happenings around your ward.",
     },
@@ -55,27 +63,36 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "center",
     padding: "1rem",
+    backgroundColor: "#e6ffff",
+    fontFamily: "'Elms Sans', sans-serif", 
   },
   card: {
-    backgroundColor: "#f8f9fb",
+    backgroundColor: "#ffffff",
+    border: "4px solid #99b3FF",
     borderRadius: "10px",
     padding: "1rem",
     width: "220px",
     textAlign: "center",
     transition: "transform 0.2s",
+    fontFamily: "'Elms Sans', sans-serif", 
   },
   icon: {
     fontSize: "2rem",
     marginBottom: "0.5rem",
   },
+  logo: {
+    width: "95px",
+    height: "90px",
+  },
   title: {
     fontSize: "1.2rem",
     marginBottom: "0.5rem",
+    fontFamily: "'Elms Sans', sans-serif", 
   },
   description: {
     fontSize: "0.95rem",
     color: "#555",
+    fontFamily: "'Elms Sans', sans-serif", 
   },
 };
-
 export default CommunityCards;

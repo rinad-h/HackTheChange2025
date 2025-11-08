@@ -5,7 +5,6 @@ const Mission = () => {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        {/* Left: Logo */}
         <div style={styles.logoSection}>
           <img src={logo} alt="Logo" style={styles.logo} />
         </div>
@@ -30,11 +29,11 @@ const Mission = () => {
 
 const styles = {
   container: {
-    height: "calc(100vh - 80px)", // full page minus navbar
+    height: "calc(100vh - 80px)", 
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#f8f9fb",
+    backgroundColor: "#e6ffff",
     fontFamily: "'Elms Sans', sans-serif",
     padding: "2rem",
     marginTop: "80px",
