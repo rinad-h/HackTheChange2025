@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Mission from "./Mission";
 
 const MainMenu = ({ onLogout, onNavigate }) => {
   const navItems = [
@@ -13,6 +14,7 @@ const MainMenu = ({ onLogout, onNavigate }) => {
   return (
     <div style={styles.container}>
       <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
+      <Mission />
       <main style={styles.content}>
         <h2>Main Menu</h2>
         <p>Welcome — choose a section from the navigation above.</p>
