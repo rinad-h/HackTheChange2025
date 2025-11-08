@@ -1,48 +1,82 @@
-// src/components/Mission.js
 import React from "react";
 import logo from "../images/logo.png";
 
 const Mission = () => {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-80px)] bg-gray-50 font-['Elms Sans']">
-      <div className="flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-lg p-8 max-w-6xl w-[90%]">
-        {/* Logo Section */}
-        <div className="flex justify-center md:w-1/2 p-4">
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-64 h-auto object-contain drop-shadow-md"
-          />
+    <div style={styles.container}>
+      <div style={styles.card}>
+        {/* Left: Logo */}
+        <div style={styles.logoSection}>
+          <img src={logo} alt="Logo" style={styles.logo} />
         </div>
 
-        {/* Text Section */}
-        <div className="md:w-1/2 text-gray-800 space-y-4 p-4 text-center md:text-left">
-          <h2 className="text-3xl font-bold mb-4 text-emerald-700">
-            Our Mission
-          </h2>
-          <p>
-            We strive to make cities smarter, greener, and more connected through
-            technology and innovation.
-          </p>
-          <p>
-            Our team believes in building tools that empower communities and
-            enhance urban living.
-          </p>
-          <p>
-            From sustainability tracking to intelligent infrastructure, we aim to
-            create a positive impact on everyday life.
-          </p>
-          <p>
-            Collaboration and inclusivity are at the heart of everything we do.
-          </p>
-          <p>
-            Together, we envision a future where every city thrives in harmony
-            with its people and the planet.
+        {/* Right: Mission Text */}
+        <div style={styles.textSection}>
+          <h2 style={styles.heading}>Our Mission</h2>
+          <p style={styles.paragraph}>
+            Our mission is to build a future where cities are inclusive, safe,
+            and sustainable through the power of technology. We aim to empower
+            communities by developing tools that bridge innovation with everyday
+            life. By focusing on collaboration, accessibility, and environmental
+            consciousness, we strive to reshape how people interact with their
+            surroundings. Together, we’re creating urban spaces that thrive in
+            harmony with their people, fostering resilience and connection at
+            every step.
           </p>
         </div>
       </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    height: "calc(100vh - 80px)", // full page minus navbar
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f8f9fb",
+    fontFamily: "'Elms Sans', sans-serif",
+    padding: "2rem",
+    marginTop: "80px",
+  },
+  card: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#ffffff",
+    borderRadius: "25px",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+    width: "90%",
+    maxWidth: "1200px",
+    padding: "3rem 2rem",
+    gap: "3rem",
+  },
+  logoSection: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+  },
+  logo: {
+    width: "300px",
+    height: "auto",
+    objectFit: "contain",
+  },
+  textSection: {
+    flex: 1.2,
+    color: "#333",
+  },
+  heading: {
+    fontSize: "2.5rem",
+    fontWeight: "700",
+    color: "#4B70E2",
+    marginBottom: "1.5rem",
+  },
+  paragraph: {
+    fontSize: "1.15rem",
+    lineHeight: "1.8",
+    color: "#555",
+  },
 };
 
 export default Mission;

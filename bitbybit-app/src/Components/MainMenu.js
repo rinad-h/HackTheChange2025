@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Mission from "./Mission";
 
+
 const MainMenu = ({ onLogout, onNavigate }) => {
   const navItems = [
     { label: "Transportation", route: "transport" },
@@ -15,10 +16,6 @@ const MainMenu = ({ onLogout, onNavigate }) => {
     <div style={styles.container}>
       <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
       <Mission />
-      <main style={styles.content}>
-        <h2>Main Menu</h2>
-        <p>Welcome — choose a section from the navigation above.</p>
-      </main>
     </div>
   );
 };
@@ -30,7 +27,6 @@ const styles = {
     fontFamily: "Arial, sans-serif",
   },
   content: {
-    paddingTop: "80px", // leave space for fixed navbar
     paddingLeft: "1rem",
     paddingRight: "1rem",
   },
