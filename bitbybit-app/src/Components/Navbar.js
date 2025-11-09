@@ -27,7 +27,7 @@ const Navbar = ({onNavigate, onLogout }) => {
 
   return (
     <header style={styles.navbar}>
-      <div style={styles.leftGroup}>
+      <div style={styles.leftGroup} onClick={() => onNavigate("/main")}>
         <img src={logo} alt="Logo" style={styles.logo} />
         <img src={title} alt="Bit by Bit" style={styles.title} />
       </div>
