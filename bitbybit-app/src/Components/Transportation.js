@@ -3,14 +3,25 @@ import Navbar from "./Navbar";
 import TransportationMap from "./TransportationMap";
 import TransportationForum from "./TransportationForum";
 
-const Transportation = ({ currentUser }) => {
+import { useNavigate } from "react-router-dom";
+
+
+const Transportation = ({ currentUser, onLogout }) => {
+
+  /**nav bar */
+      const navigate = useNavigate();
+      const handleNavigate = (route) => {
+        navigate(route);
+      };
+  /**nav bar */
+
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [posts, setPosts] = useState([]);
 
   return (
     <div style={styles.container}>
       {/* Navbar at top */}
-      <Navbar />
+      <Navbar onNavigate={handleNavigate} onLogout={onLogout}/>
       <main style={styles.content}>
         <div style={styles.forumSection}>
           <TransportationForum

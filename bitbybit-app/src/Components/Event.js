@@ -3,13 +3,23 @@ import Navbar from "./Navbar";
 import EventMap from "./EventMap";
 import EventForum from "./EventForum";
 
-const Event = ({ currentUser }) => {
+import { useNavigate } from "react-router-dom";
+
+const Event = ({ currentUser, onLogout }) => {
+
+  /**nav bar */
+    const navigate = useNavigate();
+    const handleNavigate = (route) => {
+      navigate(route);
+    };
+  /**nav bar */
+
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [posts, setPosts] = useState([]);
 
   return (
     <div style={styles.container}>
-      <Navbar />
+      <Navbar onNavigate={handleNavigate} onLogout={onLogout}/>
       <main style={styles.content}>
         <div style={styles.forumSection}>
           <EventForum

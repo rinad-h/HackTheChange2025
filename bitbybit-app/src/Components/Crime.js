@@ -3,14 +3,23 @@ import Navbar from "./Navbar";
 import CrimeMap from "./CrimeMap";
 import CrimeForum from "./CrimeForum";
 
-const Crime = ({ currentUser }) => {
+import { useNavigate } from "react-router-dom";
+
+const Crime = ({ currentUser, onLogout }) => {
+
+  /**nav bar */
+  const navigate = useNavigate();
+  const handleNavigate = (route) => {
+    navigate(route);
+  };
+  /**nav bar */
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [posts, setPosts] = useState([]);
 
   return (
     <div style={styles.container}>
       {/* Navbar at top */}
-      <Navbar />
+      <Navbar onNavigate={handleNavigate} onLogout={onLogout}/>
       <main style={styles.content}>
         <div style={styles.forumSection}>
           <CrimeForum
