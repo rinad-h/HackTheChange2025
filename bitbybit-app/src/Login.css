@@ -1,0 +1,73 @@
+.page-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.h2 {
+
+}
+
+.left-panel {
+    width: 40%;
+    background-color: white;
+    padding: 20px 20px;
+}
+
+.welcome-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #27538c;
+}
+
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    background: #d2e1f5;
+    padding: 50px 50px;
+
+}
+ .welcome-title, .login-title {
+    text-align: center;
+ }
+
+.field-label {
+    color: #27538c;
+    font-size: larger;
+    align-content: flex-start;
+}
+
+.login-input {
+    font-size: large;
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 15px;
+    border: 2px solid #27538c;
+    margin-top: 0.3em;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 1.2rem;
+  background: #2c4a82;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signup-link {
+    padding: 1em 0em;
+    text-align: center;
+}
+
+

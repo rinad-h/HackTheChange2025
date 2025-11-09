@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Login.css";
 
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("");
@@ -27,49 +28,50 @@ const Login = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleLogin} style={styles.form}>
-        <h2>Login</h2>
+    <div className="page-layout">
+    <div className="left-panel">
+      <form className="login-card" onSubmit={handleLogin}>
+        <h1 className="welcome-title"> Welcome to Bit by Bit</h1>
+        <h2 className="login-title">Login</h2>
+        
+        <label className="field-label">Email</label>
         <input
+          className="login-input"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={styles.input}
         />
+       
+        <label className="field-label">Password</label>
         <input
+          className="login-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={styles.input}
         />
-        <button type="submit" style={styles.button}>Login</button>
+        <button className="login-button" type="submit">SIGN IN</button>
 
         <a
           href="/signup"
-          style={{
-            ...styles.button,
-            backgroundColor: "#2196F3",
-            marginTop: "0.5rem",
-            textAlign: "center",
-            display: "block",
-            textDecoration: "none",
-            lineHeight: "2rem",
-          }}
-        >
-          Go to Signup
+          className="signup-link"
+        >Don't have an account? Register here!
         </a>
 
         {message && <p>{message}</p>}
       </form>
+
+      <div className="right-panel">
+      </div>
+    </div>
     </div>
   );
 };
 
-const styles = {
+/* const styles = {
   container: {
     display: "flex",
     justifyContent: "center",
@@ -99,6 +101,6 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
   },
-};
+}; */
 
 export default Login;
