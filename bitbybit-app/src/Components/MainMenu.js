@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Mission from "./Mission";
+import About from "./About";
 import CommunityCards from "./CommunityCards";
 
 const MainMenu = ({ onLogout, onNavigate }) => {
@@ -16,6 +17,7 @@ const MainMenu = ({ onLogout, onNavigate }) => {
     <div style={styles.container}>
       <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
       <Mission />
+      <About />
       <CommunityCards />
     </div>
   );
