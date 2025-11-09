@@ -104,10 +104,21 @@ app.post("/posts", (req, res) => {
 }
 );
 
-//lists posts starting with most recent
+//lists posts starting with most recent based on the corrsponding category
 
 app.get("/posts", (req, res) => {
-  db.all(`SELECT * FROM posts ORDER BY datetime(created_at) DESC`, [], (err, rows) => {
+  const { category } = req.query;
+  let query = `SELECT * FROM posts`;
+  const params = [];
+
+  if (category) {
+    query += ` WHERE category = ?`;
+    params.push(category);
+  }
+
+  query += ` ORDER BY datetime(created_at) DESC`;
+
+  db.all(query, params, (err, rows) => {
     if (err) return res.status(500).send("DB error");
     res.json(rows);
   });
