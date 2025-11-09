@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -15,6 +17,10 @@ const Signup = () => {
       });
       const data = await res.text();
       setMessage(data);
+
+      if (data === "Signup successful") {
+        navigate("/login"); 
+      }
     } catch (err) {
       console.error(err);
       setMessage("Server error. Please try again later.");
@@ -43,21 +49,17 @@ const Signup = () => {
         />
         <button type="submit" style={styles.button}>Signup</button>
 
-        {/* Link back to Login */}
-        <a
-          href="/"
+        <button
+          type="button"
+          onClick={() => navigate("/login")}
           style={{
             ...styles.button,
             backgroundColor: "#2196F3",
             marginTop: "0.5rem",
-            textAlign: "center",
-            display: "block",
-            textDecoration: "none",
-            lineHeight: "2rem",
           }}
         >
           Go to Login
-        </a>
+        </button>
 
         {message && <p>{message}</p>}
       </form>

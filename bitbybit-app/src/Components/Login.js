@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const Login = ({ onLoginSuccess }) => {
       setMessage(data);
       if (data === "Login successful" && onLoginSuccess) {
         onLoginSuccess();
+        navigate("/main"); 
       }
     } catch (err) {
       console.error(err);
@@ -48,20 +51,17 @@ const Login = ({ onLoginSuccess }) => {
         />
         <button type="submit" style={styles.button}>Login</button>
 
-        <a
-          href="/signup"
+        <button
+          type="button"
+          onClick={() => navigate("/signup")}
           style={{
             ...styles.button,
             backgroundColor: "#2196F3",
             marginTop: "0.5rem",
-            textAlign: "center",
-            display: "block",
-            textDecoration: "none",
-            lineHeight: "2rem",
           }}
         >
           Go to Signup
-        </a>
+        </button>
 
         {message && <p>{message}</p>}
       </form>
