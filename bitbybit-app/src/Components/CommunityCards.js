@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import transpo from "../images/transpo.png";
 import crime from "../images/crime.png";
 import sb from "../images/sb.png";
 import community from "../images/community.png";
 
-
-
 const InfoCard = ({ icon, title, description }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div style={styles.card}>
+    <div
+      style={{
+        ...styles.card,
+        boxShadow: isHovered ? "0 0 15px 5px #99b3FF" : "none",
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div style={styles.icon}>
         {typeof icon === "string" ? icon : icon}
       </div>
@@ -64,7 +71,7 @@ const styles = {
     justifyContent: "center",
     padding: "1rem",
     backgroundColor: "#e6ffff",
-    fontFamily: "'Elms Sans', sans-serif", 
+    fontFamily: "'Elms Sans', sans-serif",
   },
   card: {
     backgroundColor: "#ffffff",
@@ -73,8 +80,9 @@ const styles = {
     padding: "1rem",
     width: "220px",
     textAlign: "center",
-    transition: "transform 0.2s",
-    fontFamily: "'Elms Sans', sans-serif", 
+    transition: "all 0.3s ease", 
+    fontFamily: "'Elms Sans', sans-serif",
+    cursor: "pointer",
   },
   icon: {
     fontSize: "2rem",
@@ -87,12 +95,13 @@ const styles = {
   title: {
     fontSize: "1.2rem",
     marginBottom: "0.5rem",
-    fontFamily: "'Elms Sans', sans-serif", 
+    fontFamily: "'Elms Sans', sans-serif",
   },
   description: {
     fontSize: "0.95rem",
     color: "#555",
-    fontFamily: "'Elms Sans', sans-serif", 
+    fontFamily: "'Elms Sans', sans-serif",
   },
 };
+
 export default CommunityCards;
