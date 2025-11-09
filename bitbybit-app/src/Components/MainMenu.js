@@ -26,7 +26,7 @@ const MainMenu = ({ onLogout, onNavigate }) => {
 const styles = {
   container: {
     minHeight: "100vh",
-    backgroundColor: "#f0f2f5",
+    backgroundColor: "#c2d9f9ff",
     fontFamily: "Arial, sans-serif",
   },
 };
