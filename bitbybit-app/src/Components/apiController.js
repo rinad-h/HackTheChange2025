@@ -1,9 +1,11 @@
 const API = {
   base: "http://localhost:5000",
 
-  // List all posts (optionally filter by category in CrimeForum)
-  async listPosts() {
-    const r = await fetch(`${this.base}/posts`);
+  // List all posts, optionally filter by category
+  async listPosts(category) {
+    let url = `${this.base}/posts`;
+    if (category) url += `?category=${category}`; // append category query param if provided
+    const r = await fetch(url);
     if (!r.ok) throw new Error("Failed to load posts");
     return r.json();
   },
