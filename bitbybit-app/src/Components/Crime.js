@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import ForumPage from "../Pages/ForumPage";
 
 const LeafletMap = () => {
   const [wards, setWards] = useState(null);
@@ -48,7 +49,10 @@ const Crime = ({ onBack, onLogout }) => {
      
       <main style={styles.content}>
         
-    
+        <div style={styles.forumSection}>
+          <ForumPage />
+        </div>
+
         <div style={styles.mapContainer}>
             <LeafletMap />
         </div>
@@ -100,13 +104,26 @@ const styles = {
   },
   mapContainer: {
     // Wrapper style for the map to control its size on the page
+    position: "relative",
     height: "600px", 
     width: "100%",
     borderRadius: "8px",
     overflow: "hidden", // Keeps map within border radius
     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
     marginTop: "1rem",
-  }
+  },
+
+  forumSection: {
+    position: "absolute",
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    padding: "1rem",
+    height: "400px", 
+    width: "300px",
+    overflowY: "auto",  // scrollable forum
+    zIndex: 1000
+  },
 };
 
 export default Crime;
