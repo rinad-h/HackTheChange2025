@@ -29,7 +29,7 @@ db.run(`CREATE TABLE IF NOT EXISTS posts (
   location TEXT,
   category TEXT NOT NULL,
   desc TEXT NOT NULL,
-  authro TEXT NOT NULL,
+  author TEXT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMPS
 
   )`);
@@ -75,6 +75,10 @@ app.post("/login", (req, res) => {
 //--------- Forum API -----------------:
 
 app.post("/posts", (req, res) => {
+  const {title, location, category, desc, author } = req.body;
+  if( !title || !category || !desc ) return res.status(400).send("Missing Fields");
+
+  db.run( `INSERT INTO posts (title, location, category, desc, author) VALUES (?,?,?,?,?)`, [title, location || "", category, desc, author] )
   
 }
 )
