@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -10,21 +10,26 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    console.log("Attempting login with:", { username, password: "***" }); // Debug log
+
     try {
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
       });
 
+      console.log("Response status:", res.status); // Debug log
       const data = await res.text();
+      console.log("Response data:", data); // Debug log
+      
       setMessage(data);
       if (data === "Login successful" && onLoginSuccess) {
         onLoginSuccess();
         navigate("/main"); 
       }
     } catch (err) {
-      console.error(err);
+      console.error("Login error:", err);
       setMessage("Server error. Please try again later.");
     }
   };
@@ -34,10 +39,10 @@ const Login = ({ onLoginSuccess }) => {
       <form onSubmit={handleLogin} style={styles.form}>
         <h2>Login</h2>
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
           style={styles.input}
         />

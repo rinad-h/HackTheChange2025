@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -13,12 +14,12 @@ const Signup = () => {
       const res = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
       const data = await res.text();
       setMessage(data);
 
-      if (data === "Signup successful") {
+      if (data === "User registered successfully") {
         navigate("/login"); 
       }
     } catch (err) {
@@ -31,6 +32,14 @@ const Signup = () => {
     <div style={styles.container}>
       <form onSubmit={handleSignup} style={styles.form}>
         <h2>Signup</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          style={styles.input}
+        />
         <input
           type="email"
           placeholder="Email"
