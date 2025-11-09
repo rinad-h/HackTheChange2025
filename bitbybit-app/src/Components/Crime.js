@@ -1,62 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import ForumPage from "../Pages/ForumPage";
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import CrimeMap from "./CrimeMap";
+import CrimeForum from "./CrimeForum";
 
-const LeafletMap = () => {
-  const [wards, setWards] = useState(null);
+const Crime = ({ currentUser }) => {
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    fetch("https://data.calgary.ca/resource/tz8z-hyaz.geojson", {
-      headers: {
-        "X-App-Token": "DR94aUoEspVNZCjw2Mi2intnA"
-      }
-    })
-      .then(res => res.json())
-      .then(data => setWards(data))
-      .catch(err => console.error("Error fetching wards:", err));
-  }, []);
-
-  const handleEachFeature = (feature, layer) => {
-    layer.setStyle({ color: "#007bff", weight: 2, fillOpacity: 0.1 });
-    layer.on({
-      click: () => alert(`Clicked ward: ${feature.properties.ward_name}`),
-      mouseover: () => layer.setStyle({ fillOpacity: 0.2 }),
-      mouseout: () => layer.setStyle({ fillOpacity: 0.1 })
-    });
-  };
-
-  return (
-    <MapContainer
-     
-      center={[51.05, -114.25]}
-      zoom={10}
-      style={{ height: "600px", width: "100%" }} 
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {wards && <GeoJSON data={wards} onEachFeature={handleEachFeature} />}
-    </MapContainer>
-  );
-};
-
-const Crime = ({ onBack, onLogout }) => {
   return (
     <div style={styles.container}>
-      <header style={styles.header}>
-        <button style={styles.backButton} onClick={onBack}>&larr; Back</button>
-        <button style={styles.logoutButton} onClick={onLogout}>Logout</button>
-      </header>
-
-     
+      {/* Navbar at top */}
+      <Navbar />
       <main style={styles.content}>
-        
         <div style={styles.forumSection}>
-          <ForumPage />
+          <CrimeForum
+            selectedLocation={selectedLocation}
+            currentUser={currentUser}
+            onPostAdded={(newPost) => setPosts((prev) => [...prev, newPost])}
+          />
         </div>
-
         <div style={styles.mapContainer}>
-            <LeafletMap />
+          <CrimeMap
+            posts={posts}
+            selectedLocation={selectedLocation}
+            setSelectedLocation={setSelectedLocation}
+          />
         </div>
-
       </main>
     </div>
   );
@@ -64,68 +33,19 @@ const Crime = ({ onBack, onLogout }) => {
 
 const styles = {
   container: {
-    // Added a specific height for the map to work well on the page
     minHeight: "100vh",
-    backgroundColor: "#f8fafc",
-    fontFamily: "Arial, sans-serif",
     display: "flex",
     flexDirection: "column",
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0.5rem 1rem",
-    backgroundColor: "#fff",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-    position: "sticky",
-    top: 0,
-    zIndex: 500,
-  },
-  backButton: {
-    background: "transparent",
-    border: "none",
-    color: "#2196F3",
-    fontWeight: "600",
-    cursor: "pointer",
-    fontSize: "1rem",
-  },
-  logoutButton: {
-    padding: "0.4rem 0.8rem",
-    backgroundColor: "#e53935",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "#f8fafc",
   },
   content: {
-    padding: "1rem",
-    flexGrow: 1, // Allows the content area to take up remaining space
+    display: "flex",
+    flexGrow: 1,
+    marginTop: "80px", // leave space for Navbar
   },
-  mapContainer: {
-    // Wrapper style for the map to control its size on the page
-    position: "relative",
-    height: "600px", 
-    width: "100%",
-    borderRadius: "8px",
-    overflow: "hidden", // Keeps map within border radius
-    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-    marginTop: "1rem",
-  },
-
-  forumSection: {
-    position: "absolute",
-    backgroundColor: "#fff",
-    borderRadius: "8px",
-    top: "100px",
-    left: "950px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-    padding: "1rem",
-    height: "400px", 
-    width: "300px",
-    overflowY: "auto",  // scrollable forum
-    zIndex: 1000
-  },
+  forumSection: { width: "35%", padding: "1rem", overflowY: "auto" },
+  mapContainer: { width: "65%", height: "calc(100vh - 80px)" }, // full height minus navbar
 };
 
 export default Crime;
