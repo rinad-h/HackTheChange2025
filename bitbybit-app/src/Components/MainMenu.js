@@ -9,7 +9,6 @@ const MainMenu = ({ onLogout, onNavigate }) => {
     { label: "Transportation", route: "transport" },
     { label: "Crime", route: "crime" },
     { label: "Small Businesses", route: "business" },
-    { label: "Accessibility", route: "access" },
     { label: "Community Events", route: "events" },
   ];
 
