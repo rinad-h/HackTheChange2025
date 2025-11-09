@@ -64,7 +64,6 @@ const Crime = ({ onBack, onLogout }) => {
 
 const styles = {
   container: {
-    // Added a specific height for the map to work well on the page
     minHeight: "100vh",
     backgroundColor: "#f8fafc",
     fontFamily: "Arial, sans-serif",

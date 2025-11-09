@@ -44,8 +44,8 @@ const Login = ({ onLoginSuccess }) => {
     <div className="login-page">
 
       <MapContainer
-        center={[51.05, -114.25]}
-        zoom={10}
+        center={[51.05, -113.80]}
+        zoom={10.4}
         style={{ height: "100vh", width: "100vw" }}
         className="background-map">
 
