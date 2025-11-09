@@ -37,8 +37,7 @@ const Navbar = ({ navItems, onNavigate, onLogout }) => {
         ))}
       </div>
 
-      {/* Right: Profile / Logout */}
-      <div style={styles.rightGroup} ref={wrapperRef}>
+      <div style={styles.rightGroup}>
         <img
           src={profile}
           alt="Profile"
