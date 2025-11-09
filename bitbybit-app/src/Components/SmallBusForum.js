@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "./apiController";
 
-const CrimeForum = ({ selectedLocation, currentUser, onPostAdded }) => {
+const SmallBusForum = ({ selectedLocation, currentUser, onPostAdded }) => {
   const [posts, setPosts] = useState([]);
   const [adding, setAdding] = useState(false);
   const [title, setTitle] = useState("");
@@ -9,8 +9,8 @@ const CrimeForum = ({ selectedLocation, currentUser, onPostAdded }) => {
 
   const loadPosts = async () => {
     try {
-      const allPosts = await API.listPosts(); // only crime posts
-      setPosts(allPosts.filter((p) => p.category === "crime"));
+      const allPosts = await API.listPosts("smallbus"); // only small business posts
+      setPosts(allPosts);
     } catch (err) {
       console.error("Failed to load posts", err);
     }
@@ -22,14 +22,13 @@ const CrimeForum = ({ selectedLocation, currentUser, onPostAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedLocation)
-      return alert("Please select a location on the map!");
+    if (!selectedLocation) return alert("Please select a location on the map!");
 
     try {
       const newPost = await API.createPost({
         title,
         desc,
-        category: "crime",
+        category: "smallbus",
         location: `${selectedLocation.lat.toFixed(5)}, ${selectedLocation.lng.toFixed(5)}`,
         lat: selectedLocation.lat,
         lng: selectedLocation.lng,
@@ -51,7 +50,7 @@ const CrimeForum = ({ selectedLocation, currentUser, onPostAdded }) => {
     <div style={{ width: "100%", height: "100%", overflowY: "auto", padding: "1rem" }}>
       {!adding && (
         <button onClick={() => setAdding(true)} style={styles.addButton}>
-          Add Crime Post
+          Add Small Business Post
         </button>
       )}
 
@@ -89,7 +88,7 @@ const CrimeForum = ({ selectedLocation, currentUser, onPostAdded }) => {
         </form>
       )}
 
-      <h3>Existing Posts</h3>
+      <h3>Existing Small Business Posts</h3>
       {posts.map((p) => (
         <div key={p.id} style={styles.postBox}>
           <strong>{p.title}</strong>
@@ -124,4 +123,4 @@ const styles = {
   postBox: { padding: "0.5rem", marginBottom: "0.5rem", border: "1px solid #eee", borderRadius: "6px", backgroundColor: "#f5f7ff" },
 };
 
-export default CrimeForum;
+export default SmallBusForum;

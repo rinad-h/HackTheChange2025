@@ -5,6 +5,9 @@ import Signup from "./Components/Signup";
 import MainMenu from "./Components/MainMenu";
 import Map from "./Components/LeafletMap";
 import Crime from "./Components/Crime";
+import SmallBus from "./Components/SmallBus";
+import Transportation from "./Components/Transportation";
+import Events from "./Components/Event";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -41,6 +44,47 @@ function App() {
           element={
             loggedIn ? (
               <Crime
+                onBack={() => window.history.back()}
+                onLogout={() => setLoggedIn(false)}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/business"
+          element={
+            loggedIn ? (
+              <SmallBus
+                onBack={() => window.history.back()}
+                onLogout={() => setLoggedIn(false)}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/transport"
+          element={
+            loggedIn ? (
+              <Transportation
+                onBack={() => window.history.back()}
+                onLogout={() => setLoggedIn(false)}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+         <Route
+          path="/events"
+          element={
+            loggedIn ? (
+              <Events
                 onBack={() => window.history.back()}
                 onLogout={() => setLoggedIn(false)}
               />

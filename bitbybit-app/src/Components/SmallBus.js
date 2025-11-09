@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import CrimeMap from "./CrimeMap";
-import CrimeForum from "./CrimeForum";
+import SmallBusMap from "./SmallBusMap";
+import SmallBusForum from "./SmallBusForum";
 
-const Crime = ({ currentUser }) => {
+const SmallBus = ({ currentUser }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [posts, setPosts] = useState([]);
 
@@ -13,14 +13,14 @@ const Crime = ({ currentUser }) => {
       <Navbar />
       <main style={styles.content}>
         <div style={styles.forumSection}>
-          <CrimeForum
+          <SmallBusForum
             selectedLocation={selectedLocation}
             currentUser={currentUser}
             onPostAdded={(newPost) => setPosts((prev) => [...prev, newPost])}
           />
         </div>
         <div style={styles.mapContainer}>
-          <CrimeMap
+          <SmallBusMap
             posts={posts}
             selectedLocation={selectedLocation}
             setSelectedLocation={setSelectedLocation}
@@ -48,4 +48,4 @@ const styles = {
   mapContainer: { width: "65%", height: "calc(100vh - 80px)" }, // full height minus navbar
 };
 
-export default Crime;
+export default SmallBus;
