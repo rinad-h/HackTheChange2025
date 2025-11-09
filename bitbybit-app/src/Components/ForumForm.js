@@ -32,16 +32,16 @@ const ForumForm = ({onCreated}) => {
 
     return(
         <form className='post' onSubmit={submit} >
-            <div className='title'>
-                <input value={title} onChange={(e) => setTitle(e.target.value)} type='text'placeholder='Title' required/>
+            <div className='title' >
+                <input style={styles.inputBox} value={title} onChange={(e) => setTitle(e.target.value)} type='text'placeholder='Title' required/>
 
             </div>
             <div className='Location'>
-                <input value={location} onChange={(e) => setLocation(e.target.value)} type= 'text' placeholder='Add Location'/>
+                <input style={styles.inputBox} value={location} onChange={(e) => setLocation(e.target.value)} type= 'text' placeholder='Add Location'/>
             </div>
             <div className='Forum-Options'>
                 <label>
-                    <select value={category} name="selectedSection" onChange={(e) => setCategory(e.target.value)}>
+                    <select style={styles.inputBox} value={category} name="selectedSection" onChange={(e) => setCategory(e.target.value)}>
                         <option value="crime">Crime</option>
                         <option value="transport">Transportation</option>
                         <option value="accessibility">Accessibility</option>
@@ -52,10 +52,10 @@ const ForumForm = ({onCreated}) => {
                
             </div>
             <div className='Description'>
-                <input value={desc} type='text' placeholder='What Do You Want To Say?' onChange={(e) => setDesc(e.target.value)} required />
+                <input style={styles.inputBox} value={desc} type='text' placeholder='What Do You Want To Say?' onChange={(e) => setDesc(e.target.value)} required />
             </div>
 
-            <button type='submit' disabled={loading}>{loading ? "Submitting..." : "Submit"}</button>
+            <button style={styles.submit} type='submit' disabled={loading}>{loading ? "Submitting..." : "Submit"}</button>
             
             
         </form>
@@ -63,3 +63,33 @@ const ForumForm = ({onCreated}) => {
 }
 
 export default ForumForm;
+
+const styles = {
+    inputBox: {
+        width: "90%",
+        padding: "10px",
+        margin: "10px 0",
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        outline: "none",
+        fontSize: "14px",
+        color: "#333",
+        backgroundColor: "#f9f9ff",
+        
+
+    },
+
+    submit: {
+        width: "100px",
+        display: "block",
+        color: "white",
+        height: "30px",
+        margin: "20px auto",
+        borderColor: "#2196F3",
+        borderRadius: "10px",
+        backgroundColor: "#99b3FF",
+
+    },
+
+
+}

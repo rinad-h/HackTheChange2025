@@ -117,6 +117,8 @@ const styles = {
     position: "absolute",
     backgroundColor: "#fff",
     borderRadius: "8px",
+    top: "100px",
+    left: "950px",
     boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
     padding: "1rem",
     height: "400px", 
