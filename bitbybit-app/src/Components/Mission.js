@@ -22,7 +22,7 @@ const Mission = () => {
         </div>
 
         <div style={styles.textSection}>
-          <h2 style={styles.heading}>Building Calgary, Bit by Bit</h2>
+          <h2 style={styles.heading}>Connecting Calgary, Bit by Bit</h2>
           <p style={styles.paragraph}>
             At Bit By Bit, our mission is to strengthen Calgary communities by 
             fostering connection, safety, and inclusivity. We provide residents 

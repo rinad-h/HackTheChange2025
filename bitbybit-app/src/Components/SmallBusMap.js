@@ -46,7 +46,7 @@ const SmallBusMap = ({ selectedLocation, setSelectedLocation }) => {
   };
 
   return (
-    <MapContainer center={[51.05, -114.05]} zoom={11} style={{ height: "100vh", width: "100%" }}>
+    <MapContainer center={[51.05, -114.05]} zoom={10} style={{ height: "100vh", width: "100%" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {wards && <GeoJSON data={wards} onEachFeature={handleWardFeature} />}
 
