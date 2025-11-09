@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import fulllogo from "../images/logo.png";
 
 const Mission = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div style={styles.container}>
-      <div style={styles.card}>
+      <div
+        style={{
+          ...styles.card,
+          boxShadow: isHovered
+            ? "0 0 40px 8px #99b3FF" // glowing effect on hover
+            : "0 8px 20px rgba(0,0,0,0.1)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div style={styles.logoSection}>
           <img src={fulllogo} alt="Logo" style={styles.logo} />
         </div>
@@ -16,8 +28,8 @@ const Mission = () => {
             fostering connection, safety, and inclusivity. We provide residents 
             across every Calgary ward with a platform to share updates, support 
             local businesses, discover events, and stay informed about neighborhood
-             safety: helping make Calgary a more connected, resilient, and vibrant 
-             city for everyone.
+            safety: helping make Calgary a more connected, resilient, and vibrant 
+            city for everyone.
           </p>
         </div>
       </div>
@@ -34,11 +46,12 @@ const styles = {
     fontFamily: "'Elms Sans', sans-serif",
     marginTop: "80px",
     padding: "2rem",
+    marginBottom: "0px",
   },
   card: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center", // center horizontally
+    justifyContent: "center",
     backgroundColor: "#ffffff",
     borderRadius: "25px",
     boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -46,6 +59,7 @@ const styles = {
     maxWidth: "1100px",    
     padding: "3rem 2rem",
     gap: "2rem",
+    cursor: "pointer", // pointer on hover
   },
   logoSection: {
     flex: 1,
@@ -61,7 +75,7 @@ const styles = {
   textSection: {
     flex: 2,
     color: "#333",
-    textAlign: "center", // center all text
+    textAlign: "center",
   },
   heading: {
     fontSize: "2.5rem",

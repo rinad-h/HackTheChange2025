@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -11,10 +14,14 @@ const Signup = () => {
       const res = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
       const data = await res.text();
       setMessage(data);
+
+      if (data === "User registered successfully") {
+        navigate("/login"); 
+      }
     } catch (err) {
       console.error(err);
       setMessage("Server error. Please try again later.");
@@ -25,6 +32,14 @@ const Signup = () => {
     <div style={styles.container}>
       <form onSubmit={handleSignup} style={styles.form}>
         <h2>Signup</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          style={styles.input}
+        />
         <input
           type="email"
           placeholder="Email"
@@ -43,21 +58,17 @@ const Signup = () => {
         />
         <button type="submit" style={styles.button}>Signup</button>
 
-        {/* Link back to Login */}
-        <a
-          href="/"
+        <button
+          type="button"
+          onClick={() => navigate("/login")}
           style={{
             ...styles.button,
             backgroundColor: "#2196F3",
             marginTop: "0.5rem",
-            textAlign: "center",
-            display: "block",
-            textDecoration: "none",
-            lineHeight: "2rem",
           }}
         >
           Go to Login
-        </a>
+        </button>
 
         {message && <p>{message}</p>}
       </form>

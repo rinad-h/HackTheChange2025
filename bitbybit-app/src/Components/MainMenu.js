@@ -1,21 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Mission from "./Mission";
 import About from "./About";
 import CommunityCards from "./CommunityCards";
 
-const MainMenu = ({ onLogout, onNavigate }) => {
+const MainMenu = ({ onLogout }) => {
+  const navigate = useNavigate();
+
   const navItems = [
-    { label: "Transportation", route: "transport" },
-    { label: "Crime", route: "crime" },
-    { label: "Small Businesses", route: "business" },
-    { label: "Accessibility", route: "access" },
-    { label: "Community Events", route: "events" },
+    { label: "Transportation", route: "/transport" },
+    { label: "Crime", route: "/crime" },
+    { label: "Small Businesses", route: "/business" },
+    { label: "Community Events", route: "/events" },
   ];
+
+  const handleNavigate = (route) => {
+    navigate(route);
+  };
 
   return (
     <div style={styles.container}>
-      <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
+      <Navbar navItems={navItems} onNavigate={handleNavigate} onLogout={onLogout} />
       <Mission />
       <About />
       <CommunityCards />
