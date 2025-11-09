@@ -1,39 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
 
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.curved-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.curved-svg {
+    width: 500px;
+    height: 200px;
+    display: block;
+    font-family: 'Momo Trust Display', sans-serif;
+}
+
+.curved-svg #curve {
+    fill: transparent;
+    stroke: transparent;
+}
+
+.curved-text {
+    font-size: 38px;
+    font-weight: 800;
+    fill: #1f4b8f;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    margin-bottom: 0;
+}
+
+.disclaimer-text {
+    text-align: center;
+}
+
+.disclaimer-text .legal-link {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #27538c;
+}
 .page-layout {
     display: flex;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    z-index: 2;
+    position: relative;
 }
 
-.left-panel {
-    width: 40%;
-    background-color: white;
-    padding: 20px 20px;
-}
-
-.welcome-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #27538c;
-    font-family: 'Momo Trust Display', sans-serif;
+.login-logo {
+    display: block;
+    margin: -75px auto 25px auto;
+    width: 150px; 
+    height: auto;
 }
 
 
 .login-card {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 45vw;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    z-index: 10;
+}
+
+.background-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1; 
+}
+
+.login-info {
+    display: flex;
+    margin-bottom: 40px;
     flex-direction: column;
     text-align: left;
-    width: 100%;
-    height: 100%;
+    height: 90vh;
+    width: 100vw;
+    padding: 0px 40px;
+    border-radius: 20px;
     background: #d2e1f5;
-    padding: 50px 50px;
-    border-radius: 15px;
-
+    justify-content: center;
 }
- .welcome-title, .login-title {
+
+ .curved-title, .login-title {
     text-align: center;
  }
 
@@ -59,21 +125,29 @@
 }
 
 .login-button {
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 1.2rem;
-  background: #2c4a82;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 1.2rem;
+    background: #2c4a82;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .signup-link {
+    background: none;
     padding: 1em 0em;
     text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
 }
 
 

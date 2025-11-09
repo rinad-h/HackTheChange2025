@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "../Login.css";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import logo from "../images/logo.png"; 
 
 const Login = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
@@ -34,15 +38,37 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  return (
+   return (
+
     <div className="page-layout">
-      <path id="textPath" d="M10 50 C10 0 90 0 90 50"/>
-    <div className="left-panel">
-      <form className="login-card" onSubmit={handleLogin}>
-        <h1 className="welcome-title"> Welcome to Bit by Bit</h1>
+      <div className="login-page">
+
+      <MapContainer
+      center={[51.05, -114.25]}
+      zoom={10}
+      style={{ height: "100vh", width: "100vw" }}
+      className="background-map">
+
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      </MapContainer>
+
+    
+    <div className="login-card">
+      <form className="login-info" onSubmit={handleLogin}>
+        <div className="curved-title">
+           <svg className="curved-svg" viewBox="0 0 500 200">
+            <path id="curve" d="M 50 150 Q 250 20 450 150" />
+              <text className="curved-text">
+                <textPath href="#curve" startOffset="50%">
+                  Welcome to Bit by Bit
+                </textPath>
+              </text>
+            </svg>
+         </div>
+        <img src={logo} alt="Logo" className="login-logo" />
         <h2 className="login-title">Login</h2>
         
-        <label className="field-label">Email</label>
+        <label className="field-label">Username</label>
         <input
           className="login-input"
           type="text"
@@ -63,19 +89,22 @@ const Login = ({ onLoginSuccess }) => {
         />
         <button className="login-button" type="submit">SIGN IN</button>
 
-        <button
+        <Link to="/signup"
           className="signup-link"
-          type="button"
-          onClick={() => navigate("/signup")}
         >
-          Go to Signup
-        </button>
+          Don't have an account? Register here!
+        </Link>
+
+        <p className="disclaimer-text">
+          By continuing, you acknowledge that you understand and agree to the
+          <a href="#terms" className="legal-link"> Terms & Conditions </a>
+          and <a href="#policy" className="legal-link"> Privacy Policy</a>
+        </p>
 
         {message && <p>{message}</p>}
       </form>
 
-      <div className="right-panel">
-      </div>
+    </div>
     </div>
     </div>
   );
