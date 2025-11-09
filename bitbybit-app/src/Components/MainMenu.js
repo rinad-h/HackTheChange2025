@@ -8,12 +8,7 @@ import CommunityCards from "./CommunityCards";
 const MainMenu = ({ onLogout }) => {
   const navigate = useNavigate();
 
-  const navItems = [
-    { label: "Transportation", route: "/transport" },
-    { label: "Crime", route: "/crime" },
-    { label: "Small Businesses", route: "/business" },
-    { label: "Community Events", route: "/events" },
-  ];
+
 
   const handleNavigate = (route) => {
     navigate(route);
@@ -21,7 +16,7 @@ const MainMenu = ({ onLogout }) => {
 
   return (
     <div style={styles.container}>
-      <Navbar navItems={navItems} onNavigate={handleNavigate} onLogout={onLogout} />
+      <Navbar onNavigate={handleNavigate} onLogout={onLogout} />
       <Mission />
       <About />
       <CommunityCards />

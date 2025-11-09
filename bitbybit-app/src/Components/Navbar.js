@@ -3,7 +3,14 @@ import logo from "../images/logo.png";
 import profile from "../images/profile.png"; 
 import title from "../images/title.png"; 
 
-const Navbar = ({ navItems, onNavigate, onLogout }) => {
+const navItems = [
+    { label: "Transportation", route: "/transport" },
+    { label: "Crime", route: "/crime" },
+    { label: "Small Businesses", route: "/business" },
+    { label: "Community Events", route: "/events" },
+  ];
+
+const Navbar = ({onNavigate, onLogout }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const wrapperRef = useRef(null);
 
