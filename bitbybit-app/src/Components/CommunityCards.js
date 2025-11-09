@@ -70,8 +70,7 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "center",
     padding: "1rem",
-    backgroundColor: "#e6ffff",
-    fontFamily: "'Elms Sans', sans-serif",
+    fontFamily: "'Elms Sans', sans-serif", 
   },
   card: {
     backgroundColor: "#ffffff",
