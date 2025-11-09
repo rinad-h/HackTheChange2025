@@ -32,7 +32,7 @@ const SmallBusForum = ({ selectedLocation, currentUser, onPostAdded }) => {
         location: `${selectedLocation.lat.toFixed(5)}, ${selectedLocation.lng.toFixed(5)}`,
         lat: selectedLocation.lat,
         lng: selectedLocation.lng,
-        author: currentUser || "Anonymous",
+        author: currentUser?.username || currentUser || "anonymous",
       });
 
       setTitle("");

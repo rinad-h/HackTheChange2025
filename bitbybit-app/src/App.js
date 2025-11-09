@@ -11,54 +11,85 @@ import Events from "./Components/Event";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Handle login success
+  const handleLoginSuccess = (username) => {
+    setLoggedIn(true);
+    setCurrentUser(username);
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setCurrentUser(null);
+  };
 
   return (
     <Router>
       <Routes>
+
+        {/* --- LOGIN PAGE --- */}
         <Route
           path="/login"
           element={
-            loggedIn ? <Navigate to="/main" /> : <Login onLoginSuccess={() => setLoggedIn(true)} />
+            loggedIn ? (
+              <Navigate to="/main" />
+            ) : (
+              <Login onLoginSuccess={handleLoginSuccess} />
+            )
           }
         />
+
+        {/* --- SIGNUP PAGE --- */}
         <Route
           path="/signup"
           element={loggedIn ? <Navigate to="/main" /> : <Signup />}
         />
-        <Route path="/map" element={<Map />} />
 
+        {/* --- MAIN MENU --- */}
         <Route
           path="/main"
           element={
             loggedIn ? (
               <MainMenu
-                onLogout={() => setLoggedIn(false)}
+                currentUser={currentUser}
+                onLogout={handleLogout}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
+
+        {/* --- MAP PAGE --- */}
+        <Route path="/map" element={<Map />} />
+
+        {/* --- CRIME PAGE --- */}
         <Route
           path="/crime"
           element={
             loggedIn ? (
               <Crime
+                currentUser={currentUser}
                 onBack={() => window.history.back()}
-                onLogout={() => setLoggedIn(false)}
+                onLogout={handleLogout}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
+
+        {/* --- SMALL BUSINESS PAGE --- */}
         <Route
           path="/business"
           element={
             loggedIn ? (
               <SmallBus
+                currentUser={currentUser}
                 onBack={() => window.history.back()}
-                onLogout={() => setLoggedIn(false)}
+                onLogout={handleLogout}
               />
             ) : (
               <Navigate to="/login" />
@@ -66,13 +97,15 @@ function App() {
           }
         />
 
+        {/* --- TRANSPORTATION PAGE --- */}
         <Route
           path="/transport"
           element={
             loggedIn ? (
               <Transportation
+                currentUser={currentUser}
                 onBack={() => window.history.back()}
-                onLogout={() => setLoggedIn(false)}
+                onLogout={handleLogout}
               />
             ) : (
               <Navigate to="/login" />
@@ -80,13 +113,15 @@ function App() {
           }
         />
 
-         <Route
+        {/* --- EVENTS PAGE --- */}
+        <Route
           path="/events"
           element={
             loggedIn ? (
               <Events
+                currentUser={currentUser}
                 onBack={() => window.history.back()}
-                onLogout={() => setLoggedIn(false)}
+                onLogout={handleLogout}
               />
             ) : (
               <Navigate to="/login" />
@@ -94,6 +129,7 @@ function App() {
           }
         />
 
+        {/* --- CATCH-ALL REDIRECT --- */}
         <Route path="*" element={<Navigate to={loggedIn ? "/main" : "/login"} />} />
       </Routes>
     </Router>

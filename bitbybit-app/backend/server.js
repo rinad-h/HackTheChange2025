@@ -81,7 +81,8 @@ app.post("/login", (req, res) => {
     const match = await bcrypt.compare(password, row.password);
     if (!match) return res.status(401).send("Invalid credentials");
 
-    res.send("Login successful");
+    res.json({ message: "Login successful", username: row.username });
+
   });
 });
 
