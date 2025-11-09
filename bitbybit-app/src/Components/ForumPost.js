@@ -30,7 +30,7 @@ const ForumPost = ({post}) => {
             </div>
             <div className='post-detail' style={styles.postDetail}>
                 {/* add user's logo ?? */}
-                <small>posted by {post.author} | {new Date(post.created_at).toLocaleString()}</small>
+                <small> {post.category} | posted by {post.author} | {new Date(post.created_at).toLocaleString()}</small>
             </div>
 
             <div className='location' style={styles.location}>
