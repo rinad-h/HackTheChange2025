@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Mission from "./Mission";
-
+import About from "./About";
+import CommunityCards from "./CommunityCards";
 
 const MainMenu = ({ onLogout, onNavigate }) => {
   const navItems = [
@@ -16,6 +17,8 @@ const MainMenu = ({ onLogout, onNavigate }) => {
     <div style={styles.container}>
       <Navbar navItems={navItems} onNavigate={onNavigate} onLogout={onLogout} />
       <Mission />
+      <About />
+      <CommunityCards />
     </div>
   );
 };
@@ -23,12 +26,8 @@ const MainMenu = ({ onLogout, onNavigate }) => {
 const styles = {
   container: {
     minHeight: "100vh",
-    backgroundColor: "#f0f2f5",
+    backgroundColor: "#c2d9f9ff",
     fontFamily: "Arial, sans-serif",
-  },
-  content: {
-    paddingLeft: "1rem",
-    paddingRight: "1rem",
   },
 };
 
