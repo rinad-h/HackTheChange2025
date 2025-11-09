@@ -5,10 +5,6 @@
     overflow: hidden;
 }
 
-.h2 {
-
-}
-
 .left-panel {
     width: 40%;
     background-color: white;
@@ -31,25 +27,32 @@
     height: 100%;
     background: #d2e1f5;
     padding: 50px 50px;
+    border-radius: 15px;
 
 }
  .welcome-title, .login-title {
     text-align: center;
  }
 
+ .login-title {
+    color: #27538c;
+ }
+
 .field-label {
     color: #27538c;
     font-size: larger;
     align-content: flex-start;
+    font-weight: bold;
 }
 
 .login-input {
     font-size: large;
     width: 100%;
     padding: 0.4rem;
-    border-radius: 15px;
+    border-radius: 20px;
     border: 2px solid #27538c;
     margin-top: 0.3em;
+    margin-bottom: 1.5em;
 }
 
 .login-button {
