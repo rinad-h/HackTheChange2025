@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import calgary from "../images/CalgarySkyline.jpg"; // replace with your image
 
 const About = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div style={styles.container}>
-      <div style={styles.card}>
+      <div
+        style={{
+          ...styles.card,
+          boxShadow: isHovered
+            ? "0 0 40px 8px #99b3FF" // glowing effect on hover
+            : "0 8px 20px rgba(0,0,0,0.1)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Left: Text */}
         <div style={styles.textSection}>
           <h2 style={styles.heading}>Our Story</h2>
@@ -45,6 +57,7 @@ const styles = {
     maxWidth: "1100px",     
     padding: "3rem 2rem",
     gap: "3rem",
+    cursor: "pointer", // show pointer on hover
   },
   textSection: {
     flex: 2,
