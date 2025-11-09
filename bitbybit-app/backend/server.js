@@ -15,9 +15,9 @@ const db = new sqlite3.Database("./users.db", (err) => {
   else console.log("Connected to SQLite database.");
 });
 
-db.run(`PRAGMA foreign_keys = ON`); //so foreign keys work properly
+db.run(`PRAGMA foreign_keys = ON`);
 
-// Updated table schema with username
+// Users table
 db.run(`CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE,
@@ -25,8 +25,7 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
   password TEXT
 )`);
 
-/**DB table for the posts for the forum page */
-
+// Posts table (with lat/lng)
 db.run(`CREATE TABLE IF NOT EXISTS posts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
@@ -34,13 +33,13 @@ db.run(`CREATE TABLE IF NOT EXISTS posts (
   category TEXT NOT NULL,
   desc TEXT NOT NULL,
   author TEXT NOT NULL,
+  lat REAL,
+  lng REAL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)`);
 
-  )`);
-
-  /**DB table for the comments under posts for the forum page */
-
-  db.run(`CREATE TABLE IF NOT EXISTS comments (
+// Comments table
+db.run(`CREATE TABLE IF NOT EXISTS comments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   post_id INTEGER NOT NULL,
   body TEXT NOT NULL,
@@ -49,6 +48,7 @@ db.run(`CREATE TABLE IF NOT EXISTS posts (
   FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 )`);
 
+// Signup
 app.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) return res.status(400).send("Missing fields");
@@ -60,16 +60,16 @@ app.post("/signup", async (req, res) => {
     [username, email, hashedPassword],
     function(err) {
       if (err) {
-        if (err.message.includes("username")) {
-          return res.status(400).send("Username already exists");
-        }
-        return res.status(400).send("Email already exists");
+        if (err.message.includes("username")) return res.status(400).send("Username already exists");
+        if (err.message.includes("email")) return res.status(400).send("Email already exists");
+        return res.status(500).send("Database error");
       }
       res.status(201).send("User registered successfully");
     }
   );
 });
 
+// Login
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).send("Missing fields");
@@ -82,31 +82,28 @@ app.post("/login", (req, res) => {
     if (!match) return res.status(401).send("Invalid credentials");
 
     res.json({ message: "Login successful", username: row.username });
-
   });
 });
 
-//--------- Forum API -----------------:
-
+// Create post
 app.post("/posts", (req, res) => {
-  const {title, location, category, desc, author } = req.body;
-  if( !title || !category || !desc ) return res.status(400).send("Missing Fields");
+  const { title, location, category, desc, author, lat, lng } = req.body;
+  if (!title || !category || !desc) return res.status(400).send("Missing Fields");
 
-  db.run( `INSERT INTO posts (title, location, category, desc, author) VALUES (?,?,?,?,?)`, [title, location || "", category, desc, author],
-    function(err){
+  db.run(
+    `INSERT INTO posts (title, location, category, desc, author, lat, lng) VALUES (?,?,?,?,?,?,?)`,
+    [title, location || "", category, desc, author, lat, lng],
+    function(err) {
       if (err) return res.status(500).send("Database Error");
-      db.get(`SELECT * FROM posts WHERE id= ?`,[this.lastID], (e,row) =>{
-        if(e) return res.status(500).send("Database Error");
-        res.status(201).json(row); //send HTTP response back to frontend after successfully creating new post
-      })
+      db.get(`SELECT * FROM posts WHERE id = ?`, [this.lastID], (e, row) => {
+        if (e) return res.status(500).send("Database Error");
+        res.status(201).json(row);
+      });
     }
-   )
-  
-}
-);
+  );
+});
 
-//lists posts starting with most recent based on the corrsponding category
-
+// List posts
 app.get("/posts", (req, res) => {
   const { category } = req.query;
   let query = `SELECT * FROM posts`;
@@ -125,8 +122,8 @@ app.get("/posts", (req, res) => {
   });
 });
 
-//get single post
-app.get("/posts/:id", (req,res) => {
+// Get single post
+app.get("/posts/:id", (req, res) => {
   db.get(`SELECT * FROM posts WHERE id = ?`, [req.params.id], (err, row) => {
     if (err) return res.status(500).send("DB error");
     if (!row) return res.status(404).send("Not found");
@@ -134,9 +131,7 @@ app.get("/posts/:id", (req,res) => {
   });
 });
 
-/**Comments APIs */
-
-//list comments for posts
+// List comments for a post
 app.get("/posts/:id/comments", (req, res) => {
   db.all(
     `SELECT * FROM comments WHERE post_id = ? ORDER BY datetime(created_at) ASC`,
@@ -148,14 +143,15 @@ app.get("/posts/:id/comments", (req, res) => {
   );
 });
 
-//add comment to post
+// Add comment to a post
 app.post("/posts/:id/comments", (req, res) => {
   const { body, author } = req.body;
   if (!body) return res.status(400).send("Missing body");
+
   db.run(
     `INSERT INTO comments (post_id, body, author) VALUES (?, ?, ?)`,
     [req.params.id, body, author || ""],
-    function (err) {
+    function(err) {
       if (err) return res.status(500).send("DB error");
       db.get(`SELECT * FROM comments WHERE id = ?`, [this.lastID], (e, row) => {
         if (e) return res.status(500).send("DB error");
@@ -164,9 +160,6 @@ app.post("/posts/:id/comments", (req, res) => {
     }
   );
 });
-
-
-/**FORUM APIs END */
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
