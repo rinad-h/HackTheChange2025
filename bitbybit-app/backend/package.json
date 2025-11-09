@@ -4,7 +4,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npm rebuild sqlite3"
+    "postinstall": "npm rebuild sqlite3",
+    "build": "react-scripts build"
+
   },
   "keywords": [],
   "author": "",
