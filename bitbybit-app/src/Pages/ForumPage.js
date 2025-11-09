@@ -24,7 +24,7 @@ const ForumPage = () => {
             <div className='Forum-Comments'>
 
             </div>
-            <button onClick={togglePopup}>Add New Forum</button>
+            <button style={styles.addButton} onClick={togglePopup}>Add New Forum</button>
            {showPopup &&  <ForumForm onCreated={() => {loadPosts(); setShowPopup(false); }} /> }
 
             {posts.map(p => <ForumPost key={p.id} post={p} />)}
@@ -34,3 +34,20 @@ const ForumPage = () => {
 }
 
 export default ForumPage;
+
+const styles = {
+
+    addButton: {
+        width: "200px",
+        display: "block",
+        color: "white",
+        height: "30px",
+        margin: "20px auto",
+        border: "none",
+        borderRadius: "10px",
+        backgroundColor: "#99b3FF",
+        cursor: "pointer"
+
+    }
+
+}
