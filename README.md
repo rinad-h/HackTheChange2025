@@ -1,6 +1,6 @@
 # Bit By Bit
 
-**Connecting Clagry, Bit by Bit**
+**Connecting Calagry, Bit by Bit**
 
 ## Story
 During and after the pandemic, many of us felt disconnected from our communities. Neighbors became strangers, local events went unnoticed, and safety concerns were often shared too late. We wanted to change that.
