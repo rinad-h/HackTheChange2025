@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+}
+
+.login-logo {
+    display: block;
+    margin: -75px auto 25px auto;
+    width: 150px; 
+    height: auto;
+}
+
+.signup-card {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 45vw;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    z-index: 2;
+}
+
+.background-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1; 
+}
+
+.field-label {
+    color: #27538c;
+    font-size: larger;
+    align-content: flex-start;
+    font-weight: bold;
+}
+
+.signup-info {
+    display: flex;
+    margin-bottom: 40px;
+    flex-direction: column;
+    text-align: left;
+    height: 90vh;
+    width: 100vw;
+    padding: 0px 40px;
+    border-radius: 20px;
+    background: #d2e1f5;
+    justify-content: center;
+}
+
+ .signup-title {
+    text-align: center;
+    color: #27538c;
+ }
+
+.signup-input {
+    font-size: large;
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 20px;
+    border: 2px solid #27538c;
+    margin-top: 0.3em;
+    margin-bottom: 1.5em;
+}
+
+.signup-button {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 1.2rem;
+    background: #2c4a82;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.login-link {
+    background: none;
+    padding: 1em 0em;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import "../Login.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import logo from "../images/logo.png"; 
 
 const Login = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
@@ -34,47 +38,80 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
-  return (
-    <div style={styles.container}>
-      <form onSubmit={handleLogin} style={styles.form}>
-        <h2>Login</h2>
+   return (
+
+    <div className="page-layout">
+    <div className="login-page">
+
+      <MapContainer
+        center={[51.05, -114.25]}
+        zoom={10}
+        style={{ height: "100vh", width: "100vw" }}
+        className="background-map">
+
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      </MapContainer>
+
+    
+    <div className="login-card">
+    <form className="login-info" onSubmit={handleLogin}>
+
+        <div className="curved-title">
+           <svg className="curved-svg" viewBox="0 0 500 200">
+            <path id="curve" d="M 50 250 Q 250 20 450 250" />
+              <text className="curved-text">
+                <textPath href="#curve" startOffset="50%">
+                  Welcome to Bit by Bit
+                </textPath>
+              </text>
+            </svg>
+         </div>
+
+        <img src={logo} alt="Logo" className="login-logo" />
+
+        <h2 className="login-title">Login</h2>
+        
+        <label className="field-label">Username</label>
         <input
+          className="login-input"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          style={styles.input}
         />
+       
+        <label className="field-label">Password</label>
         <input
+          className="login-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={styles.input}
         />
-        <button type="submit" style={styles.button}>Login</button>
 
-        <button
-          type="button"
-          onClick={() => navigate("/signup")}
-          style={{
-            ...styles.button,
-            backgroundColor: "#2196F3",
-            marginTop: "0.5rem",
-          }}
-        >
-          Go to Signup
-        </button>
+        <button className="login-button" type="submit">SIGN IN</button>
+
+        <Link to="/signup" className="signup-link">
+          Don't have an account? Register here!
+        </Link>
+
+        <p className="disclaimer-text">
+          By continuing, you acknowledge that you understand and agree to the
+          <a href="#terms" className="legal-link"> Terms & Conditions </a>
+          and <a href="#policy" className="legal-link"> Privacy Policy</a>
+        </p>
 
         {message && <p>{message}</p>}
       </form>
-    </div>
+      </div>
+  </div>
+  </div>
   );
 };
 
-const styles = {
+/* const styles = {
   container: {
     display: "flex",
     justifyContent: "center",
@@ -104,6 +141,6 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
   },
-};
+}; */
 
 export default Login;

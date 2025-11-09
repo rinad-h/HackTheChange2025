@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    padding: 20px 20px;
+}
+
+.curved-title {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.curved-svg {
+    width: 100%;
+    max-width: 500px; /* prevents it from stretching too much */
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    font-family: 'Momo Trust Display', sans-serif;
+}
+
+.curved-svg {
+    fill: transparent;
+    stroke: transparent;
+}
+
+.curved-text {
+    font-size: clamp(18px, 2vw, 26px); 
+    font-weight: 800;
+    fill: #1f4b8f;
+    text-anchor: middle;
+}
+
+ .curved-title, .login-title {
+    text-align: center;
+ }
+
+.login-logo {
+    display: flex;
+    margin: 30px auto 25px auto;
+    width: 150px; 
+    height: auto;
+}
+
+.login-card {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 45vw;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    z-index: 2;
+}
+
+.background-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1; 
+}
+
+.login-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 90vh;
+    width: 100vw;
+    padding: 0px 40px;
+    border-radius: 20px;
+    background: #d2e1f5;
+    justify-content: center;
+}
+
+
+ .field-label {
+    color: #27538c;
+    font-size: larger;
+    align-content: flex-start;
+    font-weight: bold;
+    margin-top: -0.5em;
+}
+
+.login-title {
+    color: #27538c;
+ }
+
+.login-input {
+    font-size: large;
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 20px;
+    border: 2px solid #27538c;
+    margin-top: 0.3em;
+    margin-bottom: 1.5em;
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5em;
+    background: #2c4a82;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.signup-link {
+    background: none;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.disclaimer-text {
+    text-align: center;
+}
+
+.disclaimer-text {
+    padding: 1em 0em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.legal-link {
+    padding: 1em 0em;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #27538c;
+}
+
+
+
