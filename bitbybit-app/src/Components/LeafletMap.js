@@ -18,7 +18,7 @@ export default function LeafletMap() {
   const handleEachFeature = (feature, layer) => {
     layer.setStyle({ color: "#007bff", weight: 2, fillOpacity: 0.1 });
     layer.on({
-      click: () => alert(`Clicked ward: ${feature.properties.ward_name}`),
+      click: () => alert(`Clicked ward: ${feature.properties.label}`),
       mouseover: () => layer.setStyle({ fillOpacity: 0.2 }),
       mouseout: () => layer.setStyle({ fillOpacity: 0.1 })
     });

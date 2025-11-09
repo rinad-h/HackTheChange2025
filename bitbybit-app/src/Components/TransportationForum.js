@@ -9,7 +9,7 @@ const TransportationForum = ({ selectedLocation, currentUser, onPostAdded }) => 
 
   const loadPosts = async () => {
     try {
-      const allPosts = await API.listPosts("transport"); // only transportation posts
+      const allPosts = await API.listPosts("transport"); 
       setPosts(allPosts);
     } catch (err) {
       console.error("Failed to load posts", err);
@@ -29,9 +29,7 @@ const TransportationForum = ({ selectedLocation, currentUser, onPostAdded }) => 
         title,
         desc,
         category: "transport",
-        location: `${selectedLocation.lat.toFixed(5)}, ${selectedLocation.lng.toFixed(5)}`,
-        lat: selectedLocation.lat,
-        lng: selectedLocation.lng,
+        location: selectedLocation, // now stores ward label or LatLng string
         author: currentUser?.username || currentUser || "anonymous",
       });
 
@@ -66,12 +64,8 @@ const TransportationForum = ({ selectedLocation, currentUser, onPostAdded }) => 
           />
           <input
             type="text"
-            placeholder="Click on map to select location"
-            value={
-              selectedLocation
-                ? `${selectedLocation.lat.toFixed(5)}, ${selectedLocation.lng.toFixed(5)}`
-                : ""
-            }
+            placeholder="Click on map to select ward"
+            value={selectedLocation || ""}
             readOnly
             style={styles.input}
           />

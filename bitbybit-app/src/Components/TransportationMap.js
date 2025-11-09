@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup, useMapEvent } from "react-leaflet";
 import L from "leaflet";
 
-function LocationSelector({ setSelectedLocation }) {
-  useMapEvent("click", (e) => {
-    setSelectedLocation(e.latlng);
-  });
-  return null;
-}
 
 const TransportationMap = ({ posts, selectedLocation, setSelectedLocation }) => {
   const [wards, setWards] = useState(null);
@@ -22,12 +16,17 @@ const TransportationMap = ({ posts, selectedLocation, setSelectedLocation }) => 
   }, []);
 
   const handleWardFeature = (feature, layer) => {
-    layer.setStyle({ color: "#9b59b6", weight: 2, fillOpacity: 0.05 }); // purple outline
-    layer.on({
-      mouseover: () => layer.setStyle({ fillOpacity: 0.2 }),
-      mouseout: () => layer.setStyle({ fillOpacity: 0.05 }),
-    });
-  };
+  layer.setStyle({ color: "#9b59b6", weight: 2, fillOpacity: 0.05 });
+
+  layer.on({
+    mouseover: () => layer.setStyle({ fillOpacity: 0.2 }),
+    mouseout: () => layer.setStyle({ fillOpacity: 0.05 }),
+    click: () => {
+      setSelectedLocation(feature.properties.label);
+    },
+  });
+};
+
 
   return (
     <MapContainer center={[51.05, -114.05]} zoom={11} style={{ height: "100%", width: "100%" }}>
@@ -58,7 +57,6 @@ const TransportationMap = ({ posts, selectedLocation, setSelectedLocation }) => 
           </Marker>
         ))}
 
-      <LocationSelector setSelectedLocation={setSelectedLocation} />
     </MapContainer>
   );
 };
