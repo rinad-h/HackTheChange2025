@@ -39,12 +39,14 @@ const About = () => {
 
 const styles = {
   container: {
-    height: "calc(100vh - 80px)",
+    height: "calc(100vh - 250px)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "'Elms Sans', sans-serif",
     padding: "2rem",
+    marginTop: "0px",
+    marginBottom: "60px",
   },
   card: {
     display: "flex",
@@ -57,7 +59,7 @@ const styles = {
     maxWidth: "1100px",     
     padding: "3rem 2rem",
     gap: "3rem",
-    cursor: "pointer", // show pointer on hover
+
   },
   textSection: {
     flex: 2,

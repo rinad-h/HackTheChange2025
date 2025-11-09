@@ -46,6 +46,7 @@ const styles = {
     fontFamily: "'Elms Sans', sans-serif",
     marginTop: "80px",
     padding: "2rem",
+    marginBottom: "0px",
   },
   card: {
     display: "flex",
