@@ -29,6 +29,7 @@ const Login = ({ onLoginSuccess }) => {
 
   return (
     <div className="page-layout">
+      <path id="textPath" d="M10 50 C10 0 90 0 90 50"/>
     <div className="left-panel">
       <form className="login-card" onSubmit={handleLogin}>
         <h1 className="welcome-title"> Welcome to Bit by Bit</h1>
