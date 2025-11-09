@@ -41,23 +41,24 @@ const Login = ({ onLoginSuccess }) => {
    return (
 
     <div className="page-layout">
-      <div className="login-page">
+    <div className="login-page">
 
       <MapContainer
-      center={[51.05, -114.25]}
-      zoom={10}
-      style={{ height: "100vh", width: "100vw" }}
-      className="background-map">
+        center={[51.05, -114.25]}
+        zoom={10}
+        style={{ height: "100vh", width: "100vw" }}
+        className="background-map">
 
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       </MapContainer>
 
     
     <div className="login-card">
-      <form className="login-info" onSubmit={handleLogin}>
+    <form className="login-info" onSubmit={handleLogin}>
+
         <div className="curved-title">
            <svg className="curved-svg" viewBox="0 0 500 200">
-            <path id="curve" d="M 50 150 Q 250 20 450 150" />
+            <path id="curve" d="M 50 250 Q 250 20 450 250" />
               <text className="curved-text">
                 <textPath href="#curve" startOffset="50%">
                   Welcome to Bit by Bit
@@ -65,7 +66,9 @@ const Login = ({ onLoginSuccess }) => {
               </text>
             </svg>
          </div>
+
         <img src={logo} alt="Logo" className="login-logo" />
+
         <h2 className="login-title">Login</h2>
         
         <label className="field-label">Username</label>
@@ -87,11 +90,10 @@ const Login = ({ onLoginSuccess }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button className="login-button" type="submit">SIGN IN</button>
 
-        <Link to="/signup"
-          className="signup-link"
-        >
+        <Link to="/signup" className="signup-link">
           Don't have an account? Register here!
         </Link>
 
@@ -103,10 +105,9 @@ const Login = ({ onLoginSuccess }) => {
 
         {message && <p>{message}</p>}
       </form>
-
-    </div>
-    </div>
-    </div>
+      </div>
+  </div>
+  </div>
   );
 };
 

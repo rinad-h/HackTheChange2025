@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Signup.css";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import logo from "../images/logo.png"; 
+import { Link } from "react-router-dom";
+
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -29,53 +34,72 @@ const Signup = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSignup} style={styles.form}>
-        <h2>Signup</h2>
+    <div className="page-layout">
+    <div className="signup-page">
+      
+      <MapContainer
+        center={[51.05, -114.25]}
+        zoom={10}
+        style={{ height: "100vh", width: "100vw" }}
+        className="background-map">
+        
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      </MapContainer>
+
+      <div className="signup-card">
+      <form className="signup-info" onSubmit={handleSignup}>
+
+        <img src={logo} alt="Logo" className="login-logo" />
+        <h2 className="signup-title">Signup!</h2>
+
+        <label className="field-label">Username</label>
         <input
+          className="signup-input"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          style={styles.input}
+
         />
+
+        <label className="field-label">Email</label>
         <input
+          className="signup-input"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={styles.input}
         />
+
+        <label className="field-label">Password</label>
         <input
+          className="signup-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={styles.input}
         />
-        <button type="submit" style={styles.button}>Signup</button>
+        <button className="signup-button" type="submit">SIGNUP</button>
 
-        <button
-          type="button"
-          onClick={() => navigate("/login")}
-          style={{
-            ...styles.button,
-            backgroundColor: "#2196F3",
-            marginTop: "0.5rem",
-          }}
+
+        <Link to="/login"
+          className="login-link"
         >
-          Go to Login
-        </button>
+          Done registering? Back to login!
+        </Link>
 
         {message && <p>{message}</p>}
       </form>
     </div>
+    </div>
+    </div>
   );
 };
 
+/*
 const styles = {
   container: { display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", backgroundColor: "#f0f2f5" },
   form: { display: "flex", flexDirection: "column", padding: "2rem", background: "#fff", borderRadius: "8px", boxShadow: "0px 4px 10px rgba(0,0,0,0.1)" },
@@ -83,4 +107,5 @@ const styles = {
   button: { padding: "0.5rem", marginTop: "1rem", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" },
 };
 
+*/
 export default Signup;
